@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TitleMainActivityStyle">
+        <item name="android:textSize">@dimen/size_main_activity_text</item>
+        <item name="android:fontFamily">sans-serif-black</item>
+        <item name="android:layout_marginBottom">@dimen/margin_bottom_main_activity_text</item>
+        <item name="android:textColor">@color/burnt_sienna_title_main_activity</item>
+    </style>
+
+    <style name="ButtonMainActivityStyle">
+        <item name="android:textSize">@dimen/size_main_activity_button</item>
+        <item name="android:backgroundTint">@color/pomegranate_button_main_activity</item>
+    </style>
+</resources>
