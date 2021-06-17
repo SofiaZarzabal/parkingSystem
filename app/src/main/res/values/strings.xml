@@ -2,4 +2,5 @@
     <string name="app_name">ParkingSystem</string>
     <string name="text_main_activity_title">Welcome to Parking System</string>
     <string name="button_main_activity_total_parking_lots">Select parking lots</string>
+    <string name="toast_main_activity_total_parking_lots">Total of parking lots: %1$d </string>
 </resources>
