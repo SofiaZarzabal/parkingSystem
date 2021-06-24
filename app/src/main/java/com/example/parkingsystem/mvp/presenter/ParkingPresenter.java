@@ -1,6 +1,6 @@
 package com.example.parkingsystem.mvp.presenter;
 
-import com.example.parkingsystem.mvp.contract.ParkingContract;
+import com.example.parkingsystem.mvp.contracts.ParkingContract;
 
 public class ParkingPresenter implements ParkingContract.ParkingPresenter {
 
@@ -12,8 +12,14 @@ public class ParkingPresenter implements ParkingContract.ParkingPresenter {
         this.view = view;
     }
 
+    @Override
     public void onButtonMainSelectParkingPressed() {
-        model.setParkingLots(10);
-        view.showParkingSpaces(model.getParkingLots());
+        view.showParkingAlertDialog();
+    }
+
+    @Override
+    public void onButtonDialogParkingConfirmPressed(int parkingSpaces) {
+        model.setParkingSpaces(parkingSpaces);
+        view.showParkingSpaces(model.getParkingSpaces());
     }
 }

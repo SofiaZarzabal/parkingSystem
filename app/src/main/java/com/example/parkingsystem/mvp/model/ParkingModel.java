@@ -1,16 +1,17 @@
 package com.example.parkingsystem.mvp.model;
 
-import com.example.parkingsystem.mvp.contract.ParkingContract;
+import com.example.parkingsystem.mvp.contracts.ParkingContract;
 
 public class ParkingModel implements ParkingContract.ParkingModel {
+    private int parkingSpaces;
 
-    private int parkingLots;
-
-    public int getParkingLots() {
-        return parkingLots;
+    @Override
+    public void setParkingSpaces(int parkingSpaces) {
+        this.parkingSpaces = parkingSpaces;
     }
 
-    public void setParkingLots(int parkingLots) {
-        this.parkingLots = parkingLots;
+    @Override
+    public int getParkingSpaces() {
+        return parkingSpaces;
     }
 }
