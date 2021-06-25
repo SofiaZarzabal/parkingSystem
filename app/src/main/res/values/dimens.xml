@@ -3,4 +3,5 @@
     <dimen name="size_main_activity_text">28sp</dimen>
     <dimen name="size_main_activity_button">20sp</dimen>
     <dimen name="margin_bottom_main_activity_text">300dp</dimen>
+    <dimen name="padding_parking_dialog_fragment">16dp</dimen>
 </resources>

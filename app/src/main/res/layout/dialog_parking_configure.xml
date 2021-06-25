@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/padding_parking_dialog_fragment"
+    android:paddingRight="@dimen/padding_parking_dialog_fragment"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/title_fragment_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="@string/text_configure_parking_dialog" />
+
+    <EditText
+        android:id="@+id/input_fragment_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title_fragment_dialog"
+        android:autofillHints=""
+        android:inputType="number"
+        tools:ignore="LabelFor" />
+
+    <Button
+        android:id="@+id/button_dialog_fragment_confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/input_fragment_dialog"
+        android:text="@string/button_configure_parking_dialog_accept" />
+
+    <Button
+        android:id="@+id/button_dialog_fragment_cancel"
+        style="@style/ButtonConfigureParkingDialogCancelStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_configure_parking_dialog_cancel" />
+</RelativeLayout>
