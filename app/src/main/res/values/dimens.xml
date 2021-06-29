@@ -2,6 +2,11 @@
 <resources>
     <dimen name="size_main_activity_text">28sp</dimen>
     <dimen name="size_main_activity_button">20sp</dimen>
-    <dimen name="margin_bottom_main_activity_text">300dp</dimen>
-    <dimen name="padding_parking_dialog_fragment">16dp</dimen>
+    <dimen name="margin_bottom_main_activity_text">100dp</dimen>
+    <dimen name="margin_top_main_activity_text">50dp</dimen>
+    <dimen name="padding_default">16dp</dimen>
+    <dimen name="padding_fragment_dialog">@dimen/padding_default</dimen>
+    <dimen name="padding_parking_space_reservation">@dimen/padding_default</dimen>
+    <dimen name="size_parking_space_reservation_title">40dp</dimen>
+    <dimen name="size_parking_space_reservation_text">20dp</dimen>
 </resources>

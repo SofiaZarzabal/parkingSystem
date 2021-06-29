@@ -2,10 +2,12 @@ package com.example.parkingsystem.mvp.view;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.widget.Toast;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 import com.example.parkingsystem.R;
+import com.example.parkingsystem.activities.ParkingSpaceReservationActivity;
 import com.example.parkingsystem.fragment.ConfigureParkingDialog;
 import com.example.parkingsystem.mvp.contracts.ParkingContract;
 import com.example.parkingsystem.mvp.view.base.ActivityView;
@@ -31,6 +33,15 @@ public class ParkingView extends ActivityView implements ParkingContract.Parking
         FragmentManager fragmentManager = getFragmentManager();
         if (fragmentManager != null) {
             dialog.show(fragmentManager, FRAGMENT_TAG);
+        }
+    }
+
+    @Override
+    public void showParkingSpaceReservation() {
+        Activity activity = getActivity();
+        if(activity != null){
+            Intent intent = new Intent(activity, ParkingSpaceReservationActivity.class);
+            activity.startActivity(intent);
         }
     }
 }

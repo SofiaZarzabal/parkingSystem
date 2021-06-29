@@ -3,9 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/padding_parking_dialog_fragment"
-    android:paddingRight="@dimen/padding_parking_dialog_fragment"
-    tools:context=".MainActivity">
+    android:paddingLeft="@dimen/padding_fragment_dialog"
+    android:paddingRight="@dimen/padding_fragment_dialog"
+    tools:context=".activities.MainActivity">
 
     <TextView
         android:id="@+id/title_fragment_dialog"
