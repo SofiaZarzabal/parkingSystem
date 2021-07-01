@@ -6,12 +6,16 @@ public interface ParkingContract {
         void onButtonMainSelectParkingPressed();
 
         void onButtonDialogParkingConfirmPressed(int parkingSpaces);
+
+        void onButtonMainBookParkingLotPressed();
     }
 
     interface ParkingView {
         void showParkingSpaces(int parkingSpaces);
 
         void showParkingAlertDialog();
+
+        void showParkingSpaceReservation();
     }
 
     interface ParkingModel {

@@ -22,4 +22,9 @@ public class ParkingPresenter implements ParkingContract.ParkingPresenter {
         model.setParkingSpaces(parkingSpaces);
         view.showParkingSpaces(model.getParkingSpaces());
     }
+
+    @Override
+    public void onButtonMainBookParkingLotPressed() {
+        view.showParkingSpaceReservation();
+    }
 }

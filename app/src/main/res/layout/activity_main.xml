@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/wallpaper_main_background"
     android:gravity="center"
-    android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".activities.MainActivity">
 
     <TextView
+        android:id="@+id/title_main_activity"
         style="@style/TitleMainActivityStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -16,8 +16,15 @@
 
     <Button
         android:id="@+id/button_main_select_parking"
-        style="@style/ButtonMainActivityStyle"
+        style="@style/ButtonMainActivitySelectParkingSpacesStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_main_activity_total_parking_lots" />
-</LinearLayout>
+
+    <Button
+        android:id="@+id/button_main_book_parking_lot"
+        style="@style/ButtonMainActivityBookParkingStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_main_activity_book_parking_lot" />
+</RelativeLayout>

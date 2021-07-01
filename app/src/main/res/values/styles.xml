@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TitleMainActivityStyle">
+        <item name="android:textSize">@dimen/size_main_activity_text</item>
+        <item name="android:fontFamily">sans-serif-black</item>
+        <item name="android:layout_marginBottom">@dimen/margin_bottom_main_activity_text</item>
+        <item name="android:textColor">@color/burnt_sienna_title_main_activity</item>
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_marginTop">@dimen/margin_top_main_activity_text</item>
+    </style>
+
+    <style name="ButtonMainActivitySelectParkingSpacesStyle">
+        <item name="android:textSize">@dimen/size_main_activity_button</item>
+        <item name="android:backgroundTint">@color/pomegranate_button_main_activity</item>
+        <item name="android:layout_below">@id/title_main_activity</item>
+        <item name="android:layout_centerHorizontal">true</item>
+    </style>
+
+    <style name="ButtonMainActivityBookParkingStyle">
+        <item name="android:textSize">@dimen/size_main_activity_button</item>
+        <item name="android:backgroundTint">@color/pomegranate_button_main_activity</item>
+        <item name="android:layout_below">@id/button_main_select_parking</item>
+        <item name="android:layout_centerHorizontal">true</item>
+    </style>
+
+
+    <style name="ButtonConfigureParkingDialogCancelStyle">
+        <item name="android:layout_below">@+id/input_fragment_dialog</item>
+        <item name="android:layout_alignParentEnd">true</item>
+    </style>
+
+    <style name="TitleParkingSpaceReservationStyle">
+        <item name="android:fontFamily">monospace</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/size_parking_space_reservation_text</item>
+    </style>
+
+    <style name="TextParkingSpaceReservationStartStyle">
+        <item name="android:layout_below">@id/title_parking_space_reservation</item>
+        <item name="android:layout_toEndOf">@id/button_parking_space_reservation_picker_begin</item>
+        <item name="android:textSize">@dimen/size_parking_space_reservation_text</item>
+    </style>
+
+    <style name="TextParkingSpaceReservationEndStyle">
+        <item name="android:layout_below">@id/button_parking_space_reservation_picker_begin</item>
+        <item name="android:layout_toEndOf">@id/button_parking_space_reservation_picker_end</item>
+        <item name="android:textSize">@dimen/size_parking_space_reservation_text</item>
+    </style>
+
+    <style name="InputParkingSpaceReservationPlaceStyle">
+        <item name="android:layout_below">@id/button_parking_space_reservation_picker_end</item>
+        <item name="android:hint">@string/input_parking_space_reservation_place_hint</item>
+        <item name="android:inputType">text</item>
+    </style>
+    
+    <style name="InputParkingSpaceReservationCodeStyle">
+        <item name="android:layout_below">@id/input_parking_space_reservation_place</item>
+        <item name="android:hint">@string/input_parking_space_reservation_code_hint</item>
+        <item name="android:inputType">number</item>
+    </style>
+
+    <style name="ButtonParkingSpaceReservationEndStyle">
+        <item name="android:layout_below">@id/button_parking_space_reservation_picker_begin</item>
+        <item name="android:enabled">false</item>
+    </style>
+
+    <style name="ButtonParkingSpaceReservationSaveStyle">
+        <item name="android:layout_below">@+id/input_parking_space_reservation_code</item>
+        <item name="android:layout_centerHorizontal">true</item>
+    </style>
+</resources>

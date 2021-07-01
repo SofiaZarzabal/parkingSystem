@@ -1,5 +1,6 @@
-package com.example.parkingsystem;
+package com.example.parkingsystem.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.parkingsystem.databinding.ActivityMainBinding;
@@ -30,5 +31,6 @@ public class MainActivity extends AppCompatActivity implements ConfigureParkingD
 
     public void setListener() {
         binding.buttonMainSelectParking.setOnClickListener(view -> presenter.onButtonMainSelectParkingPressed());
+        binding.buttonMainBookParkingLot.setOnClickListener(view -> presenter.onButtonMainBookParkingLotPressed());
     }
 }
