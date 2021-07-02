@@ -21,6 +21,12 @@ public class ParkingSpaceReservationPresenter implements ParkingSpaceReservation
     }
 
     @Override
+    public void onButtonParkingSpaceReservationSavePressed() {
+        model.makeReservation(view.getParkingSpace(), view.getSecurityCode());
+        view.showSaveDone();
+    }
+
+    @Override
     public void onDateSetPressed(String date, TimePickerDialog.OnTimeSetListener listener) {
         if (model.getDateStart() == null) {
             model.setDateStart(date);

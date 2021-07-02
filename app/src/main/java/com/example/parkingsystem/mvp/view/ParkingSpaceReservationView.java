@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.widget.Toast;
 import com.example.parkingsystem.R;
 import com.example.parkingsystem.databinding.ActivityReservationSpaceParkingBinding;
 import com.example.parkingsystem.mvp.contracts.ParkingSpaceReservationContract;
@@ -34,7 +35,7 @@ public class ParkingSpaceReservationView extends ActivityView implements Parking
     @Override
     public void showDateAndTimeStart(String date, String time) {
         Context context = getContext();
-        if(context != null){
+        if (context != null) {
             binding.textParkingSpaceReservationPickerBegin.setText(context.getString(R.string.text_parking_space_reservation_picker, date, time));
         }
     }
@@ -42,7 +43,7 @@ public class ParkingSpaceReservationView extends ActivityView implements Parking
     @Override
     public void showDateAndTimeEnd(String date, String time) {
         Context context = getContext();
-        if(context != null){
+        if (context != null) {
             binding.textParkingSpaceReservationPickerEnd.setText(context.getString(R.string.text_parking_space_reservation_picker, date, time));
         }
     }
@@ -62,5 +63,25 @@ public class ParkingSpaceReservationView extends ActivityView implements Parking
     @Override
     public void enableButtonEnd() {
         binding.buttonParkingSpaceReservationPickerEnd.setEnabled(true);
+    }
+
+    @Override
+    public int getParkingSpace() {
+        return Integer.parseInt(binding.inputParkingSpaceReservationPlace.getText().toString());
+    }
+
+    @Override
+    public int getSecurityCode() {
+        return Integer.parseInt(binding.inputParkingSpaceReservationCode.getText().toString());
+    }
+
+    @Override
+    public void showSaveDone() {
+        Context context = getContext();
+        Activity activity = getActivity();
+        if (context != null && activity != null) {
+            Toast.makeText(context, context.getString(R.string.toast_parking_space_reservation_save), Toast.LENGTH_SHORT).show();
+            activity.finish();
+        }
     }
 }

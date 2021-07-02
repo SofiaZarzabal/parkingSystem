@@ -11,9 +11,9 @@ import com.example.parkingsystem.activities.ParkingSpaceReservationActivity;
 import com.example.parkingsystem.fragment.ConfigureParkingDialog;
 import com.example.parkingsystem.mvp.contracts.ParkingContract;
 import com.example.parkingsystem.mvp.view.base.ActivityView;
+import com.example.parkingsystem.util.Constants;
 
 public class ParkingView extends ActivityView implements ParkingContract.ParkingView {
-    private final String FRAGMENT_TAG = "parkingDialog";
 
     public ParkingView(Activity activity) {
         super(activity);
@@ -29,10 +29,13 @@ public class ParkingView extends ActivityView implements ParkingContract.Parking
 
     @Override
     public void showParkingAlertDialog() {
-        DialogFragment dialog = new ConfigureParkingDialog();
+        Context context = getContext();
         FragmentManager fragmentManager = getFragmentManager();
-        if (fragmentManager != null) {
-            dialog.show(fragmentManager, FRAGMENT_TAG);
+        if(context != null){
+            if (fragmentManager != null) {
+                DialogFragment dialog = new ConfigureParkingDialog();
+                dialog.show(fragmentManager, Constants.TAG_PARKING_VIEW);
+            }
         }
     }
 

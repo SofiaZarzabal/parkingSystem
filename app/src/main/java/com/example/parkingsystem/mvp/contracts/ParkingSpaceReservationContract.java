@@ -2,12 +2,13 @@ package com.example.parkingsystem.mvp.contracts;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
-import android.widget.DatePicker;
 
 public interface ParkingSpaceReservationContract {
 
     interface ParkingSpaceReservationPresenter {
         void onButtonParkingSpaceReservationPickerPressed(DatePickerDialog.OnDateSetListener listener);
+
+        void onButtonParkingSpaceReservationSavePressed();
 
         void onDateSetPressed(String date, TimePickerDialog.OnTimeSetListener timeListener);
 
@@ -24,6 +25,12 @@ public interface ParkingSpaceReservationContract {
         void showTimePickerDialog(TimePickerDialog.OnTimeSetListener timeListener);
 
         void enableButtonEnd();
+
+        void showSaveDone();
+
+        int getParkingSpace();
+
+        int getSecurityCode();
     }
 
     interface ParkingSpaceReservationModel {
@@ -43,5 +50,7 @@ public interface ParkingSpaceReservationContract {
         void setTimeEnd(String time);
 
         String getTimeEnd();
+
+        void makeReservation(int parkingSpace, int securityCode);
     }
 }

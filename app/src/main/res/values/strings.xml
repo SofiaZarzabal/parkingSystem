@@ -3,6 +3,7 @@
     <string name="text_main_activity_title">Welcome to Parking System</string>
     <string name="button_main_activity_total_parking_lots">Select parking lots</string>
     <string name="toast_main_activity_total_parking_lots">Total of parking lots: %1$d </string>
+    <string name="tag_parking_view_fragment">parkingDialog</string>
     <string name="button_configure_parking_dialog_accept">OK</string>
     <string name="button_configure_parking_dialog_cancel">Cancel</string>
     <string name="text_configure_parking_dialog">Set the amount of the parking lots avaiables</string>
@@ -15,4 +16,11 @@
     <string name="input_parking_space_reservation_code_hint">CODE</string>
     <string name="button_parking_space_reservation_save">SAVE</string>
     <string name="text_parking_space_reservation_picker">%1$s at %2$s</string>
+    <string name="toast_parking_space_reservation_save">Your reservation was made successfully</string>
+    <string name="toast_parking_space_reservation_missing_date_start">Please, put the date start in the field</string>
+    <string name="toast_parking_space_reservation_missing_time_start">Please, put the time start in the field</string>
+    <string name="toast_parking_space_reservation_missing_date_end">Please, put the date end in the field</string>
+    <string name="toast_parking_space_reservation_missing_time_end">Please, put the time end in the field</string>
+    <string name="toast_parking_space_reservation_missing_place">Please, put the parking place in the field</string>
+    <string name="toast_parking_space_reservation_missing_security_code">Please, put the security code in the field</string>
 </resources>
