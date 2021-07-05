@@ -6,42 +6,42 @@ import android.os.Bundle;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
 import androidx.appcompat.app.AppCompatActivity;
+import com.example.parkingsystem.database.ParkingSpaceReservationDB;
 import com.example.parkingsystem.databinding.ActivityReservationSpaceParkingBinding;
 import com.example.parkingsystem.mvp.contracts.ParkingSpaceReservationContract;
 import com.example.parkingsystem.mvp.model.ParkingSpaceReservationModel;
 import com.example.parkingsystem.mvp.presenter.ParkingSpaceReservationPresenter;
 import com.example.parkingsystem.mvp.view.ParkingSpaceReservationView;
+import com.example.parkingsystem.util.Constants;
 
 public class ParkingSpaceReservationActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
     private ActivityReservationSpaceParkingBinding binding;
     private ParkingSpaceReservationContract.ParkingSpaceReservationPresenter presenter;
-    private final String SLASH = "/";
-    private final String TWO_POINTS = ":";
-    private final int ONE = 1;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityReservationSpaceParkingBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        presenter = new ParkingSpaceReservationPresenter(new ParkingSpaceReservationModel(), new ParkingSpaceReservationView(this, binding));
+        presenter = new ParkingSpaceReservationPresenter(new ParkingSpaceReservationModel(ParkingSpaceReservationDB.getInstance()), new ParkingSpaceReservationView(this, binding));
         setListener();
     }
 
     public void setListener() {
         binding.buttonParkingSpaceReservationPickerBegin.setOnClickListener(view -> presenter.onButtonParkingSpaceReservationPickerPressed(this));
         binding.buttonParkingSpaceReservationPickerEnd.setOnClickListener(view -> presenter.onButtonParkingSpaceReservationPickerPressed(this));
+        binding.buttonParkingSpaceReservationSave.setOnClickListener(view -> presenter.onButtonParkingSpaceReservationSavePressed());
     }
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-        String date = dayOfMonth + SLASH + (month + ONE) + SLASH + year;
+        String date = dayOfMonth + Constants.SLASH + (month + Constants.ONE) + Constants.SLASH + year;
         presenter.onDateSetPressed(date, this);
     }
 
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-        String time = hourOfDay + TWO_POINTS + minute;
+        String time = hourOfDay + Constants.TWO_POINTS + minute;
         presenter.onTimeSetPressed(time);
     }
 }

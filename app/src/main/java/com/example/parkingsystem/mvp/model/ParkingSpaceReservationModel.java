@@ -1,50 +1,61 @@
 package com.example.parkingsystem.mvp.model;
 
+import com.example.parkingsystem.database.ParkingSpaceReservationDB;
+import com.example.parkingsystem.entity.Reservation;
 import com.example.parkingsystem.mvp.contracts.ParkingSpaceReservationContract;
 
 public class ParkingSpaceReservationModel implements ParkingSpaceReservationContract.ParkingSpaceReservationModel {
-    private String dateStart;
-    private String timeStart;
-    private String dateEnd;
-    private String timeEnd;
+    private Reservation reservation = new Reservation();
+    private ParkingSpaceReservationDB database;
 
-    @Override
-    public void setDateStart(String date) {
-        this.dateStart = date;
-    }
-
-    @Override
-    public void setDateEnd(String date) {
-        this.dateEnd = date;
+    public ParkingSpaceReservationModel(ParkingSpaceReservationDB database) {
+        this.database = database;
     }
 
     @Override
     public String getDateStart() {
-        return dateStart;
+        return this.reservation.getDateStart();
     }
 
     @Override
-    public String getDateEnd() {
-        return dateEnd;
-    }
-
-    @Override
-    public void setTimeStart(String time) {
-        this.timeStart = time;
-    }
-
-    @Override
-    public void setTimeEnd(String time) {
-        this.timeEnd = time;
+    public void setDateStart(String date) {
+        this.reservation.setDateStart(date);
     }
 
     @Override
     public String getTimeStart() {
-        return timeStart;
+        return reservation.getTimeStart();
+    }
+
+    @Override
+    public void setTimeStart(String time) {
+        this.reservation.setTimeStart(time);
+    }
+
+    @Override
+    public String getDateEnd() {
+        return reservation.getDateEnd();
+    }
+
+    @Override
+    public void setDateEnd(String date) {
+        this.reservation.setDateEnd(date);
     }
 
     @Override
     public String getTimeEnd() {
-        return timeEnd;
+        return reservation.getTimeEnd();
+    }
+
+    @Override
+    public void setTimeEnd(String time) {
+        this.reservation.setTimeEnd(time);
+    }
+
+    @Override
+    public void makeReservation(int parkingSpace, int securityCode) {
+        reservation.setParkingSpace(parkingSpace);
+        reservation.setSecurityCode(securityCode);
+        database.addReservation(reservation);
     }
 }
