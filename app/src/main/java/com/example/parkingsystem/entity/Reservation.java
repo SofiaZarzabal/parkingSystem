@@ -1,42 +1,72 @@
 package com.example.parkingsystem.entity;
 
+import android.icu.text.SimpleDateFormat;
+import com.example.parkingsystem.utils.Constants;
+import com.example.parkingsystem.utils.DateUtils;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.Locale;
+
 public class Reservation {
-    private String dateStart;
-    private String timeStart;
-    private String dateEnd;
-    private String timeEnd;
+    private Calendar dateStart;
+    private Calendar timeStart;
+    private Calendar dateEnd;
+    private Calendar timeEnd;
     private int parkingSpace;
     private int securityCode;
+    private final SimpleDateFormat formatDate = new SimpleDateFormat(Constants.FORMAT_DATE, Locale.getDefault());
+    private final SimpleDateFormat formatTime = new SimpleDateFormat(Constants.FORMAT_TIME, Locale.getDefault());
 
-    public String getDateStart() {
+    public Reservation() {
+        this.parkingSpace = Constants.NUMBER_MINUS_ONE;
+        this.securityCode = Constants.NUMBER_MINUS_ONE;
+    }
+
+    public String getFormattedDate(Calendar date) {
+        return DateUtils.convertToString(date, formatDate);
+    }
+
+    public String getFormattedTime(Calendar time) {
+        return DateUtils.convertToString(time, formatTime);
+    }
+
+    public Calendar getDateAndTimeStart() {
+        return new GregorianCalendar(dateStart.get(Calendar.YEAR), dateStart.get(Calendar.MONTH), dateStart.get(Calendar.DAY_OF_MONTH), timeStart.get(Calendar.HOUR_OF_DAY), timeStart.get(Calendar.MINUTE));
+    }
+
+    public Calendar getDateAndTimeEnd() {
+        return new GregorianCalendar(dateEnd.get(Calendar.YEAR), dateEnd.get(Calendar.MONTH), dateEnd.get(Calendar.DAY_OF_MONTH), timeEnd.get(Calendar.HOUR_OF_DAY), timeEnd.get(Calendar.MINUTE));
+    }
+
+    public Calendar getDateStart() {
         return dateStart;
     }
 
-    public void setDateStart(String dateStart) {
+    public void setDateStart(Calendar dateStart) {
         this.dateStart = dateStart;
     }
 
-    public String getTimeStart() {
+    public Calendar getTimeStart() {
         return timeStart;
     }
 
-    public void setTimeStart(String timeStart) {
+    public void setTimeStart(Calendar timeStart) {
         this.timeStart = timeStart;
     }
 
-    public String getDateEnd() {
+    public Calendar getDateEnd() {
         return dateEnd;
     }
 
-    public void setDateEnd(String dateEnd) {
+    public void setDateEnd(Calendar dateEnd) {
         this.dateEnd = dateEnd;
     }
 
-    public String getTimeEnd() {
+    public Calendar getTimeEnd() {
         return timeEnd;
     }
 
-    public void setTimeEnd(String timeEnd) {
+    public void setTimeEnd(Calendar timeEnd) {
         this.timeEnd = timeEnd;
     }
 
@@ -46,6 +76,10 @@ public class Reservation {
 
     public void setParkingSpace(int parkingSpace) {
         this.parkingSpace = parkingSpace;
+    }
+
+    public int getSecurityCode() {
+        return securityCode;
     }
 
     public void setSecurityCode(int securityCode) {
