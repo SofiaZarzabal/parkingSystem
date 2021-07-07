@@ -2,6 +2,10 @@ package com.example.parkingsystem.mvp.contracts;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.widget.Button;
+import com.example.parkingsystem.entity.Reservation;
+import com.example.parkingsystem.utils.ReservationVerificationResult;
+import java.util.Calendar;
 
 public interface ParkingSpaceReservationContract {
 
@@ -10,9 +14,9 @@ public interface ParkingSpaceReservationContract {
 
         void onButtonParkingSpaceReservationSavePressed();
 
-        void onDateSetPressed(String date, TimePickerDialog.OnTimeSetListener timeListener);
+        void onDateSetPressed(int year, int month, int day, TimePickerDialog.OnTimeSetListener timeListener);
 
-        void onTimeSetPressed(String time);
+        void onTimeSetPressed(int hour, int time);
     }
 
     interface ParkingSpaceReservationView {
@@ -31,26 +35,27 @@ public interface ParkingSpaceReservationContract {
         int getParkingSpace();
 
         int getSecurityCode();
+
+        void showMissingFieldMessage(ReservationVerificationResult reservationVerificationResult);
+
+        Button getButtonPickerStart();
+
     }
 
     interface ParkingSpaceReservationModel {
 
-        void setDateStart(String date);
+        void makeReservation();
 
-        String getDateStart();
+        ReservationVerificationResult checkFields(Reservation reservation);
 
-        void setTimeStart(String time);
+        Reservation getReservation();
 
-        String getTimeStart();
+        void completeReservationInfo(int parkingSpace, int securityCode);
 
-        void setDateEnd(String date);
+        boolean getDateStartButtonPressed();
 
-        String getDateEnd();
+        void setDateStartButtonPressed(boolean isDateStartButtonPressed);
 
-        void setTimeEnd(String time);
-
-        String getTimeEnd();
-
-        void makeReservation(int parkingSpace, int securityCode);
+        boolean isPressed(Button btn);
     }
 }

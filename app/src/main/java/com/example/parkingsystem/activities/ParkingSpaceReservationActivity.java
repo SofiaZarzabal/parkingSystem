@@ -12,7 +12,6 @@ import com.example.parkingsystem.mvp.contracts.ParkingSpaceReservationContract;
 import com.example.parkingsystem.mvp.model.ParkingSpaceReservationModel;
 import com.example.parkingsystem.mvp.presenter.ParkingSpaceReservationPresenter;
 import com.example.parkingsystem.mvp.view.ParkingSpaceReservationView;
-import com.example.parkingsystem.util.Constants;
 
 public class ParkingSpaceReservationActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
     private ActivityReservationSpaceParkingBinding binding;
@@ -35,13 +34,11 @@ public class ParkingSpaceReservationActivity extends AppCompatActivity implement
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-        String date = dayOfMonth + Constants.SLASH + (month + Constants.ONE) + Constants.SLASH + year;
-        presenter.onDateSetPressed(date, this);
+        presenter.onDateSetPressed(year, month, dayOfMonth, this);
     }
 
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-        String time = hourOfDay + Constants.TWO_POINTS + minute;
-        presenter.onTimeSetPressed(time);
+        presenter.onTimeSetPressed(hourOfDay, minute);
     }
 }

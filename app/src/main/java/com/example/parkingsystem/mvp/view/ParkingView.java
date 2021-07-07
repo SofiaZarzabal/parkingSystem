@@ -11,7 +11,7 @@ import com.example.parkingsystem.activities.ParkingSpaceReservationActivity;
 import com.example.parkingsystem.fragment.ConfigureParkingDialog;
 import com.example.parkingsystem.mvp.contracts.ParkingContract;
 import com.example.parkingsystem.mvp.view.base.ActivityView;
-import com.example.parkingsystem.util.Constants;
+import com.example.parkingsystem.utils.Constants;
 
 public class ParkingView extends ActivityView implements ParkingContract.ParkingView {
 

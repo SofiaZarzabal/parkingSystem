@@ -20,6 +20,10 @@ public class ParkingSpaceReservationDB {
         return database;
     }
 
+    public HashMap<Integer, List<Reservation>> getHash() {
+        return hashReservation;
+    }
+
     public void addReservation(Reservation reservation) {
         List<Reservation> reservations = new ArrayList<>();
         int parkingSpace = reservation.getParkingSpace();
