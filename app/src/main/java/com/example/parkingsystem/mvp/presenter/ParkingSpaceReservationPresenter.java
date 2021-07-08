@@ -29,6 +29,7 @@ public class ParkingSpaceReservationPresenter implements ParkingSpaceReservation
 
     @Override
     public void onButtonParkingSpaceReservationSavePressed() {
+        view.showReleasedPastReservations(model.releaseReservations());
         int parkingSpace = view.getParkingSpace().isEmpty() ? Constants.NUMBER_MINUS_ONE : Integer.parseInt(view.getParkingSpace());
         int securityCode = view.getSecurityCode().isEmpty() ? Constants.NUMBER_MINUS_ONE : Integer.parseInt(view.getSecurityCode());
         model.completeReservationInfo(parkingSpace, securityCode);
