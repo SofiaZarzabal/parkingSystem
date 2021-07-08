@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/wallpaper_main_background"
@@ -44,17 +43,13 @@
         android:id="@+id/input_parking_space_reservation_place"
         style="@style/InputParkingSpaceReservationPlaceStyle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:autofillHints=""
-        tools:ignore="LabelFor" />
+        android:layout_height="wrap_content" />
 
     <EditText
         android:id="@+id/input_parking_space_reservation_code"
         style="@style/InputParkingSpaceReservationCodeStyle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:autofillHints=""
-        tools:ignore="LabelFor" />
+        android:layout_height="wrap_content" />
 
     <Button
         android:id="@+id/button_parking_space_reservation_save"
@@ -62,4 +57,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_parking_space_reservation_save" />
+
+    <Button
+        android:id="@+id/button_parking_space_reservation_delete"
+        style="@style/ButtonParkingSpaceReservationDeleteStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_parking_space_reservation_delete" />
 </RelativeLayout>

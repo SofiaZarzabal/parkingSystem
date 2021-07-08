@@ -24,4 +24,6 @@
     <string name="toast_parking_space_reservation_missing_place">Please, put the parking place in the field</string>
     <string name="toast_parking_space_reservation_missing_security_code">Please, put the security code in the field</string>
     <string name="toast_parking_space_reservation_reservation_overlapping">This date has already booked. Please select another date</string>
+    <string name="button_parking_space_reservation_delete">DELETE</string>
+    <string name="toast_parking_space_reservation_amount_reserves_released">%1$d reserves have been released</string>
 </resources>

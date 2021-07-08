@@ -54,7 +54,7 @@
         <item name="android:hint">@string/input_parking_space_reservation_place_hint</item>
         <item name="android:inputType">number</item>
     </style>
-    
+
     <style name="InputParkingSpaceReservationCodeStyle">
         <item name="android:layout_below">@id/input_parking_space_reservation_place</item>
         <item name="android:hint">@string/input_parking_space_reservation_code_hint</item>
@@ -68,6 +68,11 @@
 
     <style name="ButtonParkingSpaceReservationSaveStyle">
         <item name="android:layout_below">@+id/input_parking_space_reservation_code</item>
+        <item name="android:layout_centerHorizontal">true</item>
+    </style>
+
+    <style name="ButtonParkingSpaceReservationDeleteStyle">
+        <item name="android:layout_below">@+id/button_parking_space_reservation_save</item>
         <item name="android:layout_centerHorizontal">true</item>
     </style>
 </resources>
