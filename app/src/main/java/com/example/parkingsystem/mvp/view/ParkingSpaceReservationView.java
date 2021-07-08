@@ -10,7 +10,6 @@ import com.example.parkingsystem.R;
 import com.example.parkingsystem.databinding.ActivityReservationSpaceParkingBinding;
 import com.example.parkingsystem.mvp.contracts.ParkingSpaceReservationContract;
 import com.example.parkingsystem.mvp.view.base.ActivityView;
-import com.example.parkingsystem.utils.ReservationVerificationResult;
 import java.util.Calendar;
 
 public class ParkingSpaceReservationView extends ActivityView implements ParkingSpaceReservationContract.ParkingSpaceReservationView {
@@ -77,55 +76,86 @@ public class ParkingSpaceReservationView extends ActivityView implements Parking
     }
 
     @Override
-    public int getParkingSpace() {
-        return Integer.parseInt(binding.inputParkingSpaceReservationPlace.getText().toString());
+    public String getParkingSpace() {
+        return binding.inputParkingSpaceReservationPlace.getText().toString();
     }
 
     @Override
-    public int getSecurityCode() {
-        return Integer.parseInt(binding.inputParkingSpaceReservationCode.getText().toString());
+    public String getSecurityCode() {
+        return binding.inputParkingSpaceReservationCode.getText().toString();
     }
 
     @Override
     public void showSaveDone() {
         Context context = getContext();
         Activity activity = getActivity();
-        String message = null;
         if (context != null && activity != null) {
-            message = context.getString(R.string.toast_parking_space_reservation_save);
-            showMessage(context, message);
+            showMessage(context, context.getString(R.string.toast_parking_space_reservation_save));
             activity.finish();
         }
     }
 
     @Override
-    public void showMissingFieldMessage(ReservationVerificationResult reservationVerificationResult) {
+    public void showReleasedPastReservations(int amountReservations) {
         Context context = getContext();
-        String message = null;
         if (context != null) {
-            switch (reservationVerificationResult) {
-                case MISSING_DATE_START:
-                    message = context.getString(R.string.toast_parking_space_reservation_missing_date_start);
-                    break;
-                case MISSING_TIME_START:
-                    message = context.getString(R.string.toast_parking_space_reservation_missing_time_start);
-                    break;
-                case MISSING_DATE_END:
-                    message = context.getString(R.string.toast_parking_space_reservation_missing_date_end);
-                    break;
-                case MISSING_TIME_END:
-                    message = context.getString(R.string.toast_parking_space_reservation_missing_time_end);
-                    break;
-                case MISSING_PARKING_SPACE:
-                    message = context.getString(R.string.toast_parking_space_reservation_missing_place);
-                    break;
-                case MISSING_SECURITY_CODE:
-                    message = context.getString(R.string.toast_parking_space_reservation_missing_security_code);
-                    break;
-                case RESERVATION_OVERLAPPING:
-                    message = context.getString(R.string.toast_parking_space_reservation_reservation_overlapping);
-            }
+            showMessage(context, context.getString(R.string.toast_parking_space_reservation_amount_reserves_released, amountReservations));
         }
-        showMessage(context, message);
+    }
+
+    @Override
+    public void showMissingDateStart() {
+        Context context = getContext();
+        if (context != null) {
+            showMessage(context, context.getString(R.string.toast_parking_space_reservation_missing_date_start));
+        }
+    }
+
+    @Override
+    public void showMissingTimeStart() {
+        Context context = getContext();
+        if (context != null) {
+            showMessage(context, context.getString(R.string.toast_parking_space_reservation_missing_time_start));
+        }
+    }
+
+    @Override
+    public void showMissingDateEnd() {
+        Context context = getContext();
+        if (context != null) {
+            showMessage(context, context.getString(R.string.toast_parking_space_reservation_missing_date_end));
+        }
+    }
+
+    @Override
+    public void showMissingTimeEnd() {
+        Context context = getContext();
+        if (context != null) {
+            showMessage(context, context.getString(R.string.toast_parking_space_reservation_missing_time_end));
+        }
+    }
+
+    @Override
+    public void showMissingParkingSpace() {
+        Context context = getContext();
+        if (context != null) {
+            showMessage(context, context.getString(R.string.toast_parking_space_reservation_missing_place));
+        }
+    }
+
+    @Override
+    public void showMissingSecurityCode() {
+        Context context = getContext();
+        if (context != null) {
+            showMessage(context, context.getString(R.string.toast_parking_space_reservation_missing_security_code));
+        }
+    }
+
+    @Override
+    public void showReservationOverlapping() {
+        Context context = getContext();
+        if (context != null) {
+            showMessage(context, context.getString(R.string.toast_parking_space_reservation_reservation_overlapping));
+        }
     }
 }

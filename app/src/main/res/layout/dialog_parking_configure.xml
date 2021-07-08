@@ -19,9 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/title_fragment_dialog"
-        android:autofillHints=""
-        android:inputType="number"
-        tools:ignore="LabelFor" />
+        android:inputType="number" />
 
     <Button
         android:id="@+id/button_dialog_fragment_confirm"

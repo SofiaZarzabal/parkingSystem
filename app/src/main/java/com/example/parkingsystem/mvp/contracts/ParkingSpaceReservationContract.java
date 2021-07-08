@@ -17,6 +17,8 @@ public interface ParkingSpaceReservationContract {
         void onDateSetPressed(int year, int month, int day, TimePickerDialog.OnTimeSetListener timeListener);
 
         void onTimeSetPressed(int hour, int time);
+
+        void onButtonParkingSpaceReservationDeletePressed();
     }
 
     interface ParkingSpaceReservationView {
@@ -32,21 +34,33 @@ public interface ParkingSpaceReservationContract {
 
         void showSaveDone();
 
-        int getParkingSpace();
+        String getParkingSpace();
 
-        int getSecurityCode();
+        String getSecurityCode();
 
-        void showMissingFieldMessage(ReservationVerificationResult reservationVerificationResult);
+        void showMissingDateStart();
+
+        void showMissingTimeStart();
+
+        void showMissingDateEnd();
+
+        void showMissingTimeEnd();
+
+        void showMissingParkingSpace();
+
+        void showMissingSecurityCode();
+
+        void showReservationOverlapping();
 
         Button getButtonPickerStart();
+
+        void showReleasedPastReservations(int amountReservations);
 
     }
 
     interface ParkingSpaceReservationModel {
 
-        void makeReservation();
-
-        ReservationVerificationResult checkFields(Reservation reservation);
+        ReservationVerificationResult checkFields();
 
         Reservation getReservation();
 
@@ -56,6 +70,25 @@ public interface ParkingSpaceReservationContract {
 
         void setDateStartButtonPressed(boolean isDateStartButtonPressed);
 
-        boolean isPressed(Button btn);
+        void makeReservation(Reservation reservation);
+
+        int releaseReservations();
+
+        Calendar getDateStart();
+
+        Calendar getTimeStart();
+
+        Calendar getDateEnd();
+
+        Calendar getTimeEnd();
+
+        void setDateStart(Calendar dateStart);
+
+        void setTimeStart(Calendar timeStart);
+
+        void setDateEnd(Calendar dateEnd);
+
+        void setTimeEnd(Calendar timeEnd);
+
     }
 }

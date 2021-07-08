@@ -30,6 +30,7 @@ public class ParkingSpaceReservationActivity extends AppCompatActivity implement
         binding.buttonParkingSpaceReservationPickerBegin.setOnClickListener(view -> presenter.onButtonParkingSpaceReservationPickerPressed(this));
         binding.buttonParkingSpaceReservationPickerEnd.setOnClickListener(view -> presenter.onButtonParkingSpaceReservationPickerPressed(this));
         binding.buttonParkingSpaceReservationSave.setOnClickListener(view -> presenter.onButtonParkingSpaceReservationSavePressed());
+        binding.buttonParkingSpaceReservationDelete.setOnClickListener(view -> presenter.onButtonParkingSpaceReservationDeletePressed());
     }
 
     @Override

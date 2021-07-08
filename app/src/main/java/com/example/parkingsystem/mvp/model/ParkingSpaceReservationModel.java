@@ -1,12 +1,12 @@
 package com.example.parkingsystem.mvp.model;
 
-import android.widget.Button;
 import com.example.parkingsystem.database.ParkingSpaceReservationDB;
 import com.example.parkingsystem.entity.Reservation;
 import com.example.parkingsystem.mvp.contracts.ParkingSpaceReservationContract;
 import com.example.parkingsystem.utils.Constants;
 import com.example.parkingsystem.utils.ReservationVerification;
 import com.example.parkingsystem.utils.ReservationVerificationResult;
+import java.util.Calendar;
 
 public class ParkingSpaceReservationModel implements ParkingSpaceReservationContract.ParkingSpaceReservationModel {
     private Reservation reservation = new Reservation();
@@ -20,6 +20,46 @@ public class ParkingSpaceReservationModel implements ParkingSpaceReservationCont
     }
 
     @Override
+    public Calendar getDateStart() {
+        return reservation.getDateStart();
+    }
+
+    @Override
+    public Calendar getTimeStart() {
+        return reservation.getTimeStart();
+    }
+
+    @Override
+    public Calendar getDateEnd() {
+        return reservation.getDateEnd();
+    }
+
+    @Override
+    public Calendar getTimeEnd() {
+        return reservation.getTimeEnd();
+    }
+
+    @Override
+    public void setDateStart(Calendar dateStart) {
+        reservation.setDateStart(dateStart);
+    }
+
+    @Override
+    public void setTimeStart(Calendar timeStart) {
+        reservation.setTimeStart(timeStart);
+    }
+
+    @Override
+    public void setDateEnd(Calendar dateEnd) {
+        reservation.setDateEnd(dateEnd);
+    }
+
+    @Override
+    public void setTimeEnd(Calendar timeEnd) {
+        reservation.setTimeEnd(timeEnd);
+    }
+
+    @Override
     public boolean getDateStartButtonPressed() {
         return isDateStartButtonPressed;
     }
@@ -30,13 +70,18 @@ public class ParkingSpaceReservationModel implements ParkingSpaceReservationCont
     }
 
     @Override
-    public boolean isPressed(Button btn) {
-        return btn.isPressed();
+    public Reservation getReservation() {
+        return reservation;
     }
 
     @Override
-    public Reservation getReservation() {
-        return reservation;
+    public void makeReservation(Reservation reservation) {
+        database.addReservation(reservation);
+    }
+
+    @Override
+    public int releaseReservations() {
+        return database.releasePastReservations();
     }
 
     @Override
@@ -46,12 +91,7 @@ public class ParkingSpaceReservationModel implements ParkingSpaceReservationCont
     }
 
     @Override
-    public void makeReservation() {
-        database.addReservation(reservation);
-    }
-
-    @Override
-    public ReservationVerificationResult checkFields(Reservation reservation) {
+    public ReservationVerificationResult checkFields() {
         if (getReservation().getDateStart() == null) {
             return ReservationVerificationResult.MISSING_DATE_START;
         }
@@ -70,10 +110,9 @@ public class ParkingSpaceReservationModel implements ParkingSpaceReservationCont
         if (getReservation().getSecurityCode() == Constants.NUMBER_MINUS_ONE) {
             return ReservationVerificationResult.MISSING_SECURITY_CODE;
         }
-        if (!verification.canBeReserved(reservation)) {
+        if (!verification.canBeReserved(getReservation())) {
             return ReservationVerificationResult.RESERVATION_OVERLAPPING;
         }
         return ReservationVerificationResult.SUCCESS;
-
     }
 }

@@ -23,23 +23,42 @@ public class ParkingSpaceReservationPresenter implements ParkingSpaceReservation
 
     @Override
     public void onButtonParkingSpaceReservationPickerPressed(DatePickerDialog.OnDateSetListener listener) {
-        if (model.isPressed(view.getButtonPickerStart())) {
-            model.setDateStartButtonPressed(true);
-        } else {
-            model.setDateStartButtonPressed(false);
-        }
+        model.setDateStartButtonPressed(view.getButtonPickerStart().isPressed());
         view.showDatePickerDialog(listener);
     }
 
     @Override
     public void onButtonParkingSpaceReservationSavePressed() {
-        model.completeReservationInfo(view.getParkingSpace(), view.getSecurityCode());
-        ReservationVerificationResult reservationVerificationResult = model.checkFields(model.getReservation());
-        if (reservationVerificationResult == ReservationVerificationResult.SUCCESS) {
-            model.makeReservation();
-            view.showSaveDone();
-        } else {
-            view.showMissingFieldMessage(reservationVerificationResult);
+        int parkingSpace = view.getParkingSpace().isEmpty() ? Constants.NUMBER_MINUS_ONE : Integer.parseInt(view.getParkingSpace());
+        int securityCode = view.getSecurityCode().isEmpty() ? Constants.NUMBER_MINUS_ONE : Integer.parseInt(view.getSecurityCode());
+        model.completeReservationInfo(parkingSpace, securityCode);
+        ReservationVerificationResult reservationVerificationResult = model.checkFields();
+        switch (reservationVerificationResult) {
+            case MISSING_DATE_START:
+                view.showMissingDateStart();
+                break;
+            case MISSING_TIME_START:
+                view.showMissingTimeStart();
+                break;
+            case MISSING_DATE_END:
+                view.showMissingDateEnd();
+                break;
+            case MISSING_TIME_END:
+                view.showMissingTimeEnd();
+                break;
+            case MISSING_PARKING_SPACE:
+                view.showMissingParkingSpace();
+                break;
+            case MISSING_SECURITY_CODE:
+                view.showMissingSecurityCode();
+                break;
+            case RESERVATION_OVERLAPPING:
+                view.showReservationOverlapping();
+                break;
+            case SUCCESS:
+                model.makeReservation(model.getReservation());
+                view.showSaveDone();
+                break;
         }
     }
 
@@ -49,13 +68,12 @@ public class ParkingSpaceReservationPresenter implements ParkingSpaceReservation
         SimpleDateFormat formatDate = new SimpleDateFormat(Constants.FORMAT_DATE, Locale.getDefault());
         Calendar date = DateUtils.convertToCalendar(sDate, formatDate);
         if (model.getDateStartButtonPressed()) {
-            model.getReservation().setDateStart(date);
+            model.setDateStart(date);
         } else {
-            model.getReservation().setDateEnd(date);
+            model.setDateEnd(date);
         }
         view.showTimePickerDialog(listener);
     }
-
 
     @Override
     public void onTimeSetPressed(int hour, int minute) {
@@ -63,12 +81,17 @@ public class ParkingSpaceReservationPresenter implements ParkingSpaceReservation
         SimpleDateFormat formatTime = new SimpleDateFormat(Constants.FORMAT_TIME, Locale.getDefault());
         Calendar time = DateUtils.convertToCalendar(sTime, formatTime);
         if (model.getDateStartButtonPressed()) {
-            model.getReservation().setTimeStart(time);
+            model.setTimeStart(time);
             view.enableButtonEnd();
-            view.showDateAndTimeStart(model.getReservation().getFormattedDate(model.getReservation().getDateStart()), model.getReservation().getFormattedTime(model.getReservation().getTimeStart()));
+            view.showDateAndTimeStart(model.getReservation().getFormattedDate(model.getDateStart()), model.getReservation().getFormattedTime(model.getTimeStart()));
         } else {
-            model.getReservation().setTimeEnd(time);
-            view.showDateAndTimeEnd(model.getReservation().getFormattedDate(model.getReservation().getDateEnd()), model.getReservation().getFormattedTime(model.getReservation().getTimeEnd()));
+            model.setTimeEnd(time);
+            view.showDateAndTimeEnd(model.getReservation().getFormattedDate(model.getDateEnd()), model.getReservation().getFormattedTime(model.getTimeEnd()));
         }
+    }
+
+    @Override
+    public void onButtonParkingSpaceReservationDeletePressed() {
+        view.showReleasedPastReservations(model.releaseReservations());
     }
 }

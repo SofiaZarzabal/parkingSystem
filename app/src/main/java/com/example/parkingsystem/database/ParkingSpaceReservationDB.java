@@ -1,13 +1,16 @@
 package com.example.parkingsystem.database;
 
 import com.example.parkingsystem.entity.Reservation;
+import com.example.parkingsystem.utils.Constants;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ParkingSpaceReservationDB {
     private static ParkingSpaceReservationDB database = null;
-    HashMap<Integer, List<Reservation>> hashReservation = new HashMap<>();
+    Map<Integer, List<Reservation>> hashReservation = new HashMap<>();
 
     private ParkingSpaceReservationDB() {
 
@@ -20,7 +23,7 @@ public class ParkingSpaceReservationDB {
         return database;
     }
 
-    public HashMap<Integer, List<Reservation>> getHash() {
+    public Map<Integer, List<Reservation>> getHash() {
         return hashReservation;
     }
 
@@ -32,5 +35,19 @@ public class ParkingSpaceReservationDB {
         }
         reservations.add(reservation);
         hashReservation.put(parkingSpace, reservations);
+    }
+
+    public int releasePastReservations() {
+        int reservationsReleased = Constants.ZERO;
+        Calendar currentCalendar = Calendar.getInstance();
+        for (List<Reservation> reservationList : hashReservation.values()) {
+            for (int i = Constants.ZERO; i < reservationList.size(); i++) {
+                if (reservationList.get(i).getDateAndTimeEnd().before(currentCalendar)) {
+                    reservationList.remove(reservationList.get(i));
+                    reservationsReleased++;
+                }
+            }
+        }
+        return reservationsReleased;
     }
 }
