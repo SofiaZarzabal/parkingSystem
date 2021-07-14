@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
-import android.widget.Button;
 import android.widget.Toast;
 import com.example.parkingsystem.R;
 import com.example.parkingsystem.databinding.ActivityReservationSpaceParkingBinding;
@@ -21,8 +20,8 @@ public class ParkingSpaceReservationView extends ActivityView implements Parking
     }
 
     @Override
-    public Button getButtonPickerStart() {
-        return binding.buttonParkingSpaceReservationPickerBegin;
+    public boolean getButtonPickerStart() {
+        return binding.buttonParkingSpaceReservationPickerBegin.isPressed();
     }
 
     @Override

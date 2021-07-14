@@ -4,7 +4,6 @@ import android.icu.text.SimpleDateFormat;
 import com.example.parkingsystem.utils.Constants;
 import com.example.parkingsystem.utils.DateUtils;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.Locale;
 
 public class Reservation {
@@ -31,11 +30,21 @@ public class Reservation {
     }
 
     public Calendar getDateAndTimeStart() {
-        return new GregorianCalendar(dateStart.get(Calendar.YEAR), dateStart.get(Calendar.MONTH), dateStart.get(Calendar.DAY_OF_MONTH), timeStart.get(Calendar.HOUR_OF_DAY), timeStart.get(Calendar.MINUTE));
+        return getCalendarDateAndTime(dateStart.get(Calendar.YEAR), dateStart.get(Calendar.MONTH), dateStart.get(Calendar.DAY_OF_MONTH), timeStart.get(Calendar.HOUR_OF_DAY), timeStart.get(Calendar.MINUTE));
+    }
+
+    private Calendar getCalendarDateAndTime(int year, int month, int day, int hour, int minute) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR, year);
+        calendar.set(Calendar.MONTH, month);
+        calendar.set(Calendar.DAY_OF_MONTH, day);
+        calendar.set(Calendar.HOUR, hour);
+        calendar.set(Calendar.MINUTE, minute);
+        return calendar;
     }
 
     public Calendar getDateAndTimeEnd() {
-        return new GregorianCalendar(dateEnd.get(Calendar.YEAR), dateEnd.get(Calendar.MONTH), dateEnd.get(Calendar.DAY_OF_MONTH), timeEnd.get(Calendar.HOUR_OF_DAY), timeEnd.get(Calendar.MINUTE));
+        return getCalendarDateAndTime(dateEnd.get(Calendar.YEAR), dateEnd.get(Calendar.MONTH), dateEnd.get(Calendar.DAY_OF_MONTH), timeEnd.get(Calendar.HOUR_OF_DAY), timeEnd.get(Calendar.MINUTE));
     }
 
     public Calendar getDateStart() {

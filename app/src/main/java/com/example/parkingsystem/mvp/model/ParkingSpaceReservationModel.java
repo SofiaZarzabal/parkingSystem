@@ -1,12 +1,15 @@
 package com.example.parkingsystem.mvp.model;
 
+import android.icu.text.SimpleDateFormat;
 import com.example.parkingsystem.database.ParkingSpaceReservationDB;
 import com.example.parkingsystem.entity.Reservation;
 import com.example.parkingsystem.mvp.contracts.ParkingSpaceReservationContract;
 import com.example.parkingsystem.utils.Constants;
+import com.example.parkingsystem.utils.DateUtils;
 import com.example.parkingsystem.utils.ReservationVerification;
 import com.example.parkingsystem.utils.ReservationVerificationResult;
 import java.util.Calendar;
+import java.util.Locale;
 
 public class ParkingSpaceReservationModel implements ParkingSpaceReservationContract.ParkingSpaceReservationModel {
     private Reservation reservation = new Reservation();
@@ -57,6 +60,12 @@ public class ParkingSpaceReservationModel implements ParkingSpaceReservationCont
     @Override
     public void setTimeEnd(Calendar timeEnd) {
         reservation.setTimeEnd(timeEnd);
+    }
+
+    @Override
+    public Calendar convertToCalendar(String sDate, String FORMAT) {
+        SimpleDateFormat formatDate = new SimpleDateFormat(FORMAT, Locale.getDefault());
+        return DateUtils.convertToCalendar(sDate, formatDate);
     }
 
     @Override
