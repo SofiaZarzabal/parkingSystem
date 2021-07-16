@@ -2,7 +2,6 @@ package com.example.parkingsystem.mvp.contracts;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
-import android.widget.Button;
 import com.example.parkingsystem.entity.Reservation;
 import com.example.parkingsystem.utils.ReservationVerificationResult;
 import java.util.Calendar;
@@ -52,7 +51,7 @@ public interface ParkingSpaceReservationContract {
 
         void showReservationOverlapping();
 
-        Button getButtonPickerStart();
+        boolean getButtonPickerStart();
 
         void showReleasedPastReservations(int amountReservations);
 
@@ -89,6 +88,8 @@ public interface ParkingSpaceReservationContract {
         void setDateEnd(Calendar dateEnd);
 
         void setTimeEnd(Calendar timeEnd);
+
+        Calendar convertToCalendar(String sDate, String FORMAT);
 
     }
 }

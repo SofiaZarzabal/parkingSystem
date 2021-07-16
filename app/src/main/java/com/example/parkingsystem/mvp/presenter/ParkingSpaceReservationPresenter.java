@@ -2,28 +2,23 @@ package com.example.parkingsystem.mvp.presenter;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
-import android.icu.text.SimpleDateFormat;
 import com.example.parkingsystem.mvp.contracts.ParkingSpaceReservationContract;
-import com.example.parkingsystem.mvp.model.ParkingSpaceReservationModel;
-import com.example.parkingsystem.mvp.view.ParkingSpaceReservationView;
 import com.example.parkingsystem.utils.Constants;
-import com.example.parkingsystem.utils.DateUtils;
 import com.example.parkingsystem.utils.ReservationVerificationResult;
 import java.util.Calendar;
-import java.util.Locale;
 
 public class ParkingSpaceReservationPresenter implements ParkingSpaceReservationContract.ParkingSpaceReservationPresenter {
     private ParkingSpaceReservationContract.ParkingSpaceReservationView view;
     private ParkingSpaceReservationContract.ParkingSpaceReservationModel model;
 
-    public ParkingSpaceReservationPresenter(ParkingSpaceReservationModel model, ParkingSpaceReservationView view) {
+    public ParkingSpaceReservationPresenter(ParkingSpaceReservationContract.ParkingSpaceReservationModel model, ParkingSpaceReservationContract.ParkingSpaceReservationView view) {
         this.view = view;
         this.model = model;
     }
 
     @Override
     public void onButtonParkingSpaceReservationPickerPressed(DatePickerDialog.OnDateSetListener listener) {
-        model.setDateStartButtonPressed(view.getButtonPickerStart().isPressed());
+        model.setDateStartButtonPressed(view.getButtonPickerStart());
         view.showDatePickerDialog(listener);
     }
 
@@ -66,8 +61,7 @@ public class ParkingSpaceReservationPresenter implements ParkingSpaceReservation
     @Override
     public void onDateSetPressed(int year, int month, int day, TimePickerDialog.OnTimeSetListener listener) {
         String sDate = day + Constants.SLASH + (month + Constants.ONE) + Constants.SLASH + year;
-        SimpleDateFormat formatDate = new SimpleDateFormat(Constants.FORMAT_DATE, Locale.getDefault());
-        Calendar date = DateUtils.convertToCalendar(sDate, formatDate);
+        Calendar date = model.convertToCalendar(sDate, Constants.FORMAT_DATE);
         if (model.getDateStartButtonPressed()) {
             model.setDateStart(date);
         } else {
@@ -79,8 +73,7 @@ public class ParkingSpaceReservationPresenter implements ParkingSpaceReservation
     @Override
     public void onTimeSetPressed(int hour, int minute) {
         String sTime = hour + Constants.TWO_POINTS + minute;
-        SimpleDateFormat formatTime = new SimpleDateFormat(Constants.FORMAT_TIME, Locale.getDefault());
-        Calendar time = DateUtils.convertToCalendar(sTime, formatTime);
+        Calendar time = model.convertToCalendar(sTime, Constants.FORMAT_TIME);
         if (model.getDateStartButtonPressed()) {
             model.setTimeStart(time);
             view.enableButtonEnd();

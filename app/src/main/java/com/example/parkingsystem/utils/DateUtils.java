@@ -6,10 +6,10 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class DateUtils {
-    public static Calendar convertToCalendar(String sDate, SimpleDateFormat sdf) {
+    public static Calendar convertToCalendar(String sDate, SimpleDateFormat format) {
         Date date = new Date();
         try {
-            date = sdf.parse(sDate);
+            date = format.parse(sDate);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -18,7 +18,7 @@ public class DateUtils {
         return cal;
     }
 
-    public static String convertToString(Calendar calendar, SimpleDateFormat sdf) {
-        return sdf.format(calendar.getTime());
+    public static String convertToString(Calendar calendar, SimpleDateFormat format) {
+        return format.format(calendar.getTime());
     }
 }

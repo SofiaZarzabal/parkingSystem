@@ -30,6 +30,13 @@ public class ReservationVerification {
         Calendar reservationEnd = reservation.getDateAndTimeEnd();
         Calendar storedReservationStart = storedReservation.getDateAndTimeStart();
         Calendar storedReservationEnd = storedReservation.getDateAndTimeEnd();
-        return reservationStart.after(storedReservationStart) && reservationStart.before(storedReservationEnd) || reservationEnd.after(storedReservationStart) && reservationEnd.before(storedReservationEnd);
+        if (reservationStart.before(storedReservationStart) && reservationEnd.after(storedReservationStart)) {
+            return true;
+        }
+        if (reservationStart.before(storedReservationEnd) && reservationEnd.after(storedReservationEnd)) {
+            return true;
+        } else {
+            return reservationStart.after(reservationStart) && reservationEnd.before(storedReservationEnd);
+        }
     }
 }
